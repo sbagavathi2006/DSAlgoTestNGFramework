@@ -1,0 +1,6 @@
+target/
+allure-results/
+.metadata/
+test-output/
+logs/
+reports
