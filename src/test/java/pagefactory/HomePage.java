@@ -16,14 +16,16 @@ public class HomePage {
 	private WebElement numpyNinjaLink;
 	@FindBy(xpath = "//a[contains(text(), 'Sign in')]")
 	private WebElement signInLink;
-	@FindBy(xpath = "//a[text()='NumpyNinja' or text()='Data Structures' or normalize-space(text())='Register' or text()='Sign in']")
-	private List<WebElement> homeHeaderLinks;// don't use this?????
+//	@FindBy(xpath = "//a[text()='NumpyNinja' or text()='Data Structures' or normalize-space(text())='Register' or text()='Sign in']")
+//	private List<WebElement> homeHeaderLinks;// don't use this?????
 	@FindBy(xpath = "//a[contains(text(), 'Register')]") 
 	private WebElement registerLink;
 	@FindBy(xpath = "//a[@class='nav-link dropdown-toggle']")
 	private WebElement dsDropdown;
 	@FindBy (xpath = "//div[@class='dropdown-menu show']//a")
 	private List<WebElement> dsDropdownOptions;
+	@FindBy (xpath = "//div[contains(@class, 'card-body')]")
+	private List<WebElement> cards;
 	@FindBy (xpath = "//div[contains(text(),'You are not logged in')]")
 	private WebElement errMsg;
 	
@@ -36,46 +38,58 @@ public class HomePage {
 		return driver.getTitle();
 	}
 	
-	public boolean isHomePageLoaded() {
-		String currentURL = driver.getCurrentUrl();
-		if(currentURL.contains("home")) {
-			return true;
-		}else return false;
+	public boolean linksDisplayed() {
+		if(numpyNinjaLink.isDisplayed() && registerLink.isDisplayed() && signInLink.isDisplayed() )
+		{return true;}
+		else return false;
+		
 	}
 	
 	public void clickNumpyNinja() {
 	    numpyNinjaLink.click();
 	}
+	
+	public void clickRegisterLink() {
+        registerLink.click();		
+	}
 
-	public LoginPage signInLinkClick() {
+//	public LoginPage signInLinkClick() {
+//		signInLink.click();
+//		return new LoginPage(driver);
+//	}
+	
+	public void clickSignInLink() {
 		signInLink.click();
-		return new LoginPage(driver);
 	}
 	
-	public boolean isHomeHeaderLinksDisplayed(String headerlink) {
-		
-		for(WebElement e : homeHeaderLinks) {
-			if(e.getText().trim().equalsIgnoreCase(headerlink)) {
-				return e.isDisplayed();
-			}
-		}
-		return false;
-	}
+//	public boolean isHomeHeaderLinksDisplayed(String headerlink) {
+//		
+//		for(WebElement e : homeHeaderLinks) {
+//			if(e.getText().trim().equalsIgnoreCase(headerlink)) {
+//				return e.isDisplayed();
+//			}
+//		}
+//		return false;
+//	}
 			
-	public void clickHeaderLink(String linkText) {
-		    for (WebElement link : homeHeaderLinks) {
-		        if (link.getText().trim().equalsIgnoreCase(linkText)) {
-		            link.click();
-		            return;
-		        }
-		    }
-		    throw new RuntimeException("Link text not found: " + linkText);
-		}
+//	public void clickHeaderLink(String linkText) {
+//		    for (WebElement link : homeHeaderLinks) {
+//		        if (link.getText().trim().equalsIgnoreCase(linkText)) {
+//		            link.click();
+//		            return;
+//		        }
+//		    }
+//		    throw new RuntimeException("Link text not found: " + linkText);
+//		}
+	
 
 	public void clickDataStructuresDropdown() {
 	    dsDropdown.click();
 	}
 	
+	public int getDsDropdownOptionsCount() {
+		return dsDropdownOptions.size();
+	}
 	
 	public boolean areDropdownOptionsVisible(List<String> expectedOptions) {
 	    for (String expected : expectedOptions) {
@@ -102,7 +116,17 @@ public class HomePage {
 	    throw new RuntimeException("Dropdown option not found: " + optionText);
 	}
 	
-	public boolean isLoginErrMsgDisplayed() {
+	public int getFlexCount() {
+		return cards.size();
+	}
+	
+	public void clickFlexGetStarted(String flexTitle) {
+	    String xpath = "//a[@href= '"+flexTitle+"']";
+	    WebElement getStartedBtn = driver.findElement(By.xpath(xpath));
+	    getStartedBtn.click();
+	}
+	
+	public boolean isErrMsgDisplayed() {
 	    return errMsg.isDisplayed();
 	}
   
@@ -110,15 +134,5 @@ public class HomePage {
 	    return errMsg.getText();
 	}
     
-	public void clickFlexGetStarted(String flexTitle) {
-	    String xpath = "//a[@href= '"+flexTitle+"']";
-	    WebElement getStartedBtn = driver.findElement(By.xpath(xpath));
-	    getStartedBtn.click();
-	}
-
-	public void RegisterLinkClick() {
-          registerLink.click();
-		
-	}
 
 }

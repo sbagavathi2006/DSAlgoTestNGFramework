@@ -23,9 +23,9 @@ public class DSAlgoPortalPage {
 		getStartedBtn.click();
 	}
 
-	public HomePage doGetStart() {
-        CommonMethods.waitForElementToBeVisible(driver, getStartedBtn);
-		getStartedBtn.click();
-		return new HomePage(driver); 	//Passing the driver to HomePage as part of redirection
-	}
+//	public HomePage doGetStart() {
+//        CommonMethods.waitForElementToBeVisible(driver, getStartedBtn);
+//		getStartedBtn.click();
+//		return new HomePage(driver); 	//Passing the driver to HomePage as part of redirection
+//	}
 }
