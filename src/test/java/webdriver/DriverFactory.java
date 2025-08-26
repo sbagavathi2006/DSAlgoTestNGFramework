@@ -15,7 +15,7 @@ public class DriverFactory {
 		public WebDriver init_driver(String browserName) {
 		    switch (browserName.toLowerCase()) {
 		        case "chrome":
-		            WebDriverManager.chromedriver().setup();// dont use Drivermanager use like tlDriver.set(
+		            WebDriverManager.chromedriver().setup();
 		            tlDriver.set(ThreadGuard.protect(new ChromeDriver()));
 		            break;
 		        case "edge":

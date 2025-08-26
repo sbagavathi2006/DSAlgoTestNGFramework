@@ -15,7 +15,7 @@ public class ConfigReader {
 	public Properties init_prop() {  //initialize the properties
 		prop = new Properties();		//object of properties class
 		try {
-			FileInputStream ip = new FileInputStream("src/test/resources/config/config.properties");		//configuration file path
+			FileInputStream ip = new FileInputStream("src/test/resources/config.properties");		//configuration file path
 			prop.load(ip);		//load the properties and file input stream(ip) pass here and prop is object
 			ip.close();
 		}
