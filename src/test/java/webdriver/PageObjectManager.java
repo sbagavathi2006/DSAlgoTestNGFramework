@@ -4,12 +4,13 @@ import org.openqa.selenium.WebDriver;
 
 import pagefactory.DSAlgoPortalPage;
 import pagefactory.HomePage;
+import pagefactory.LoginPage;
 
 public class PageObjectManager {
 	private WebDriver driver;
-	
 	private DSAlgoPortalPage portalPage;
 	private HomePage homePage;
+	private LoginPage loginPage;
 	
 	public PageObjectManager(WebDriver driver) {
 		this.driver = driver;
@@ -25,6 +26,13 @@ public class PageObjectManager {
 		if(homePage == null) {
 		homePage = new HomePage(driver);}
 		return homePage;
+	}
+	
+	public LoginPage getLoginPage() {
+		if(loginPage == null) {
+			loginPage = new LoginPage(driver);
+		}
+		return loginPage;
 	}
 
 }

@@ -29,5 +29,15 @@ public class CommonMethods {
             System.out.println("No alert found within timeout: "+ DEFAULT_TIMEOUT  + " seconds");
             return null;
         }
-    }    
+    	
+    }
+    	
+    public static String strUser(String str) {
+    	// Capitalize first letter
+    	String str1 = str.substring(0, 1).toUpperCase() + str.substring(1);    	
+    	return str1;
+    }
+    
+    
+      
 }

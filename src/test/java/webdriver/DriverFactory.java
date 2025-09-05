@@ -6,8 +6,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ThreadGuard;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
 public class DriverFactory {
 	
 		public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>(); //each thread gets its own instance for parallel testing
@@ -15,11 +13,9 @@ public class DriverFactory {
 		public WebDriver init_driver(String browserName) {
 		    switch (browserName.toLowerCase()) {
 		        case "chrome":
-		            WebDriverManager.chromedriver().setup();
 		            tlDriver.set(ThreadGuard.protect(new ChromeDriver()));
 		            break;
 		        case "edge":
-		            WebDriverManager.edgedriver().setup();
 		            tlDriver.set(ThreadGuard.protect(new EdgeDriver()));
 		            break;
 		        default:

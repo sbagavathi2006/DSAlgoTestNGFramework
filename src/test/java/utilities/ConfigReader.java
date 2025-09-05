@@ -12,7 +12,7 @@ public class ConfigReader {
 	
 	//this method is read the properties from config.properties file and return properties prop object
 	
-	public Properties init_prop() {  //initialize the properties
+	public static Properties init_prop() {  //initialize the properties
 		prop = new Properties();		//object of properties class
 		try {
 			FileInputStream ip = new FileInputStream("src/test/resources/config.properties");		//configuration file path
@@ -27,6 +27,15 @@ public class ConfigReader {
 		return prop;		//return the prop
 	}
 
+    // Generic property getter
+	
+    public static String getProperty(String key) {
+        if (prop == null) {
+            init_prop();
+        }
+        return prop.getProperty(key);
+    }
+	
 	public static void setBrowserType(String browser) {
 		browserType.set(browser);
 	}
