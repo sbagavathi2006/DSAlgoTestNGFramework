@@ -1,10 +1,15 @@
 package pagefactory;
 
+import java.util.Map;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import utilities.CommonMethods;
+import utilities.ExcelReaderFillo;
 
 public class LoginPage {
 	private WebDriver driver;
@@ -40,12 +45,12 @@ public class LoginPage {
 		pwdSignIn.sendKeys(password);
 	}
 	
-	public DSOptionsPage loginBtnClick() {
+	public void loginBtnClick() {
 		loginBtnClick.click();
-		return new DSOptionsPage(driver);
 	}
 	
 	public boolean isErrMsgDisplayed() {
+		CommonMethods.waitForElementToBeVisible(driver, loginErrMsg);
 		return loginErrMsg.isDisplayed();
 	}
 	
@@ -74,4 +79,15 @@ public class LoginPage {
 	    "return arguments[0].validationMessage;", pwdSignIn);
 		return 	validationMsg;
 	}
+	
+	public void loginTODSAlgo() {
+		Map<String, String> validCred = ExcelReaderFillo.getRowAsMap("login", "ValidCredential");
+		userNameSignIn.clear();
+		userNameSignIn.sendKeys(validCred.get("username"));
+		pwdSignIn.clear();
+		pwdSignIn.sendKeys(validCred.get("password"));
+		loginBtnClick.click();		
+	}
+	
+
 }

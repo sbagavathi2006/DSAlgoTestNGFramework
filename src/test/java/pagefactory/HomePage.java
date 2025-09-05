@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.CommonMethods;
+
 public class HomePage {
 
 	private WebDriver driver;
@@ -16,8 +18,6 @@ public class HomePage {
 	private WebElement numpyNinjaLink;
 	@FindBy(xpath = "//a[contains(text(), 'Sign in')]")
 	private WebElement signInLink;
-//	@FindBy(xpath = "//a[text()='NumpyNinja' or text()='Data Structures' or normalize-space(text())='Register' or text()='Sign in']")
-//	private List<WebElement> homeHeaderLinks;// don't use this?????
 	@FindBy(xpath = "//a[contains(text(), 'Register')]") 
 	private WebElement registerLink;
 	@FindBy(xpath = "//a[@class='nav-link dropdown-toggle']")
@@ -28,6 +28,12 @@ public class HomePage {
 	private List<WebElement> cards;
 	@FindBy (xpath = "//div[contains(text(),'You are not logged in')]")
 	private WebElement errMsg;
+	@FindBy(xpath = "//div[contains(text(), 'You are logged in')]") 
+	private WebElement loginSuccessAlert;
+	@FindBy(xpath = "//a[contains(text(), 'Sign out')]") 
+	private WebElement signout;	
+	@FindBy(xpath = "//div[contains(text(), 'Logged out successfully')]")
+	private WebElement signoutSuccessMsg;
 	
 	public HomePage (WebDriver driver) {
 		this.driver = driver; 	// Reuses the driver created in Hooks
@@ -38,11 +44,26 @@ public class HomePage {
 		return driver.getTitle();
 	}
 	
-	public boolean linksDisplayed() {
-		if(numpyNinjaLink.isDisplayed() && registerLink.isDisplayed() && signInLink.isDisplayed() )
-		{return true;}
-		else return false;
+	public boolean isNumpyNinjaLinkDisplayed() {
+		return numpyNinjaLink.isDisplayed();
+	}
+	
+	public boolean isRegisterLinkDisplayed() {
+		return registerLink.isDisplayed();
+	}
+	
+	public boolean isSignInLinkDisplayed() {
+		return signInLink.isDisplayed();
+	}
+	
+	public boolean isDropdownOptionsDisplayed() {
+		return dsDropdown.isDisplayed();
 		
+	}
+	
+	public boolean isFlexDisplayed() {
+		if(cards.size() >= 1) {
+		return true;} else return false;		
 	}
 	
 	public void clickNumpyNinja() {
@@ -53,36 +74,10 @@ public class HomePage {
         registerLink.click();		
 	}
 
-//	public LoginPage signInLinkClick() {
-//		signInLink.click();
-//		return new LoginPage(driver);
-//	}
-	
 	public void clickSignInLink() {
 		signInLink.click();
 	}
 	
-//	public boolean isHomeHeaderLinksDisplayed(String headerlink) {
-//		
-//		for(WebElement e : homeHeaderLinks) {
-//			if(e.getText().trim().equalsIgnoreCase(headerlink)) {
-//				return e.isDisplayed();
-//			}
-//		}
-//		return false;
-//	}
-			
-//	public void clickHeaderLink(String linkText) {
-//		    for (WebElement link : homeHeaderLinks) {
-//		        if (link.getText().trim().equalsIgnoreCase(linkText)) {
-//		            link.click();
-//		            return;
-//		        }
-//		    }
-//		    throw new RuntimeException("Link text not found: " + linkText);
-//		}
-	
-
 	public void clickDataStructuresDropdown() {
 	    dsDropdown.click();
 	}
@@ -91,24 +86,10 @@ public class HomePage {
 		return dsDropdownOptions.size();
 	}
 	
-	public boolean areDropdownOptionsVisible(List<String> expectedOptions) {
-	    for (String expected : expectedOptions) {
-	        boolean found = false;
-	        for(WebElement option : dsDropdownOptions) {
-	        	String actualText = option.getText().trim();
-	        	if(actualText.equalsIgnoreCase(expected)) {
-	        		found = true;
-	        		break;
-	        	}
-	        }
-	        if (!found) return false; 		// One of the expected options was not found
-	    }
-	    return true; 		// All expected options were found
-	}
-	
 	public void selectFromDropdown(String optionText) {
 	    for (WebElement e : dsDropdownOptions) {
 	        if (e.getText().trim().equalsIgnoreCase(optionText)) {
+	            CommonMethods.waitForElementToBeVisible(driver, e);
 	            e.click();
 	            return;
 	        }
@@ -123,6 +104,7 @@ public class HomePage {
 	public void clickFlexGetStarted(String flexTitle) {
 	    String xpath = "//a[@href= '"+flexTitle+"']";
 	    WebElement getStartedBtn = driver.findElement(By.xpath(xpath));
+        CommonMethods.waitForElementToBeVisible(driver, getStartedBtn);
 	    getStartedBtn.click();
 	}
 	
@@ -134,5 +116,29 @@ public class HomePage {
 	    return errMsg.getText();
 	}
     
-
+	public boolean isLoginSuccessMsgDisplayed() {
+		CommonMethods.waitForElementToBeVisible(driver, loginSuccessAlert);
+		return loginSuccessAlert.isDisplayed();
+	}
+	
+	public String getLoginSuccessMsg() {
+		return loginSuccessAlert.getText();
+	}
+	
+	public String loggedInUser(String username) {
+	    WebElement loggedInUserName = driver.findElement(By.xpath("//a[contains(text(), ' " + username + " ')]")); 	//to handle dynamic user name
+	    return loggedInUserName.getText().trim();
+	}
+	
+	public boolean signoutLinkDisplayed() {
+		return signout.isDisplayed();
+	}
+	
+	public void clickSignoutLink() {
+		signout.click();
+	}
+	
+	public boolean isSignoutSuccessMsgDisplayed() {
+		return signoutSuccessMsg.isDisplayed();
+	}
 }

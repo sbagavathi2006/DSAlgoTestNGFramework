@@ -1,51 +1,58 @@
 package utilities;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
-import com.codoid.products.exception.FilloException;
 import com.codoid.products.fillo.Connection;
 import com.codoid.products.fillo.Fillo;
 import com.codoid.products.fillo.Recordset;
 
-import hooks.Hooks;
-
-public class ExcelReaderFillo extends Hooks{
+public class ExcelReaderFillo{
+	private static Map<String, String[]> sheetHeaders = new HashMap<>();
+	private static Map<String, Object[][]> sheetDataCache = new HashMap<>();
+	private static boolean isDataLoaded = false;
 	
-	   String filePath;
 	
-	    @DataProvider(name = "getExcelData")
-	    public Object[][] getExcelDataFromSheet(String sheetName) {
+	//Load test data from all sheets into memory
+	
+	public static void loadExcelData() {
+		if(isDataLoaded) return;	 // if already loaded, exit early
 	        Connection connection = null;
 	        Recordset recordset = null;
       
 	        try {
 		        Fillo fillo = new Fillo();
-		        configReader = new ConfigReader();
-				prop = configReader.init_prop();
-		        filePath = prop.getProperty("testDataPath");
-                connection = fillo.getConnection(filePath);
-                recordset = connection.executeQuery("select * from "+ sheetName +"");
-                int numOfRows = recordset.getCount();
-                int numOfColumns = recordset.getFieldNames().size();
-                Object[][] testData = new Object [numOfRows][numOfColumns];
+                connection = fillo.getConnection(Constants.TESTDATAPATH);
+                                
+                //Get all sheets
                 
-                int row = 0;
-                while (recordset.next()) {
-                    int col = 0;
-                    for (String fieldName : recordset.getFieldNames()) {
-                    	testData[row][col] = recordset.getField(fieldName); // put value in right cell
-                        col++;
-                    }
-                    row++;
-                }
-                return testData;
+                for(String sheetName : connection.getMetaData().getTableNames()) {
+                    recordset = connection.executeQuery("select * from "+ sheetName +"");
+                    int numOfRows = recordset.getCount();
+                    int numOfColumns = recordset.getFieldNames().size();
+                    Object[][] testData = new Object [numOfRows][numOfColumns];
+                    
+                 // Save headers once per sheet
+                    
+                    String[] headers = recordset.getFieldNames().toArray(new String[0]);
+                    sheetHeaders.put(sheetName, headers);
 
+                    int row = 0;
+                    while (recordset.next()) {
+                        int col = 0;
+                        for (String fieldName : recordset.getFieldNames()) {
+                        	testData[row][col] = recordset.getField(fieldName); // put value in right cell
+                            col++;
+                        }
+                        row++;
+                    }
+                    
+                    sheetDataCache.put(sheetName, testData);
+                    recordset.close();
+                }
+                
+                isDataLoaded = true;
+                
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -56,8 +63,64 @@ public class ExcelReaderFillo extends Hooks{
                     connection.close();
                 }
             }
-			return null;               
-                       
+                      
 	    }
+		
+	//Retrieve test data for a specific sheet
+	
+	public static Object[][] getExcelDataFromSheet(String sheetName){
+//		if(!isDataLoaded) {
+//			loadExcelData();
+//		}
+		return sheetDataCache.get(sheetName);
+		}
+	
+	
+	//Load test data based on validation types
+	public static Object[][] getTestDataFromValidationTypes(String sheetName, String validationType) {
+			Object[][] arr = sheetDataCache.get(sheetName);
+			int numRows = arr.length;
+		
+			for(int i = 0; i < numRows; i++) {
+				for(int j = 0; j < arr[i].length; j++) {
+					if(arr[i][j] .equals(validationType)){
+						return new Object[][] { arr[i] };
+					}
+				}
+			}
+			
+			// If not found, return empty dataset
+			
+		    return new Object[0][0];
+		}
+	
+	public static Map<String, String> getRowAsMap(String sheetName, String validationType) {
+	    Object[][] arr = sheetDataCache.get(sheetName);
+	    String[] headers = sheetHeaders.get(sheetName);
+
+	    if (arr == null || arr.length == 0) {
+	        return new HashMap<>();
+	    }
+
+	    for (Object[] row : arr) {
+	        for (Object cell : row) {
+	            if (cell != null && cell.toString().equals(validationType)) {
+	                Map<String, String> map = new HashMap<>();
+	                for (int col = 0; col < headers.length; col++) {
+	                    map.put(headers[col], row[col].toString());
+	                }
+	                return map; // first matching row
+	            }
+	        }
+	    }
+	    return new HashMap<>();
+	}
+	
+	public static String validLoginUser() {
+		Map<String, String> validCred = ExcelReaderFillo.getRowAsMap("login", "ValidCredential");
+		String validUser = validCred.get("username");
+		return validUser;
+	}
+
 
 	}
