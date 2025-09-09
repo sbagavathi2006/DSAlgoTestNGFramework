@@ -17,6 +17,11 @@ public class Constants {
 	public static final int PRAC_QN_NUM4 = 4;
 	public static final String GRAPH_GRAPH_TITLE = "Graph";
 	public static final String GRAPH_GRAPH_REP_TITLE = "Graph Representations";
+	public static final String QUEUE_IMP_OF_QUE_IN_PYTHON = "Implementation of Queue in Python";
+	public static final String QUEUE_IMP_USING_COLLE = "Implementation using collections.deque";
+	public static final String QUEUE_IMP_USING_ARR = "Implementation using array";
+	public static final String QUEUE_QUEUE_OPER = "Queue Operations";
+
 
 
 	//private since this constructor is just a container for static values, Never create an Object.

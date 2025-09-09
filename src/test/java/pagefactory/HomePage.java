@@ -174,6 +174,7 @@ public class HomePage {
 	}
 	
 	public void queueGetStartBtnClick() {
+		CommonMethods.waitForElementToBeVisible(driver, queueGetStartBtn);
 		queueGetStartBtn.click();
 	}
 	

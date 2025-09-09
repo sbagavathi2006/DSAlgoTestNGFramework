@@ -88,5 +88,20 @@ public class ExcelDataProvider {
     public Object[][] testDataGraphValidCodeRunEditor(){  	
     	return ExcelReaderFillo.getTestDataFromValidationTypes("graphTryEditor", "ValidCodeRun");
     }
+    
+    @DataProvider(name = "testDataQueueEmptyCodeEditor")
+    public Object[][] testDataQueueEmptyCodeEditor(){  	
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("queueTryEditor", "EmptyCodeEditor");
+    }
+    
+    @DataProvider(name = "testDataQueueInvalidCodeRunEditor")
+    public Object[][] testDataQueueInvalidCodeRunEditor(){  	
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("queueTryEditor", "InvalidCodeRun");
+    }
+    
+    @DataProvider(name = "testDataQueueValidCodeRunEditor")
+    public Object[][] testDataQueueValidCodeRunEditor(){  	
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("queueTryEditor", "ValidCodeRun");
+    }
  
 }
