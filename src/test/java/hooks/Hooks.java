@@ -1,5 +1,7 @@
 package hooks;
 
+import java.util.Map;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -44,10 +46,13 @@ public class Hooks {
 	
 	@BeforeMethod(onlyForGroups = {"validCredentials"}, dependsOnMethods = "launchbrowser")
 	public void doLogin() {
-
+		 Map<String, String> validCred = ExcelReaderFillo.getRowAsMap("login", "ValidCredential");
+		 String username = validCred.get("username");
+		 String password = validCred.get("password");
 		TestContext.getPom().getDSAlgoPortalPage().getStartedBtnClick();
 		TestContext.getPom().getHomePage().clickSignInLink();
-		TestContext.getPom().getLoginPage().loginTODSAlgo();
+		TestContext.getPom().getLoginPage().loginTODSAlgo(username, password);
+		LoggerLoad.info("User Logged In");
 	}
 //	
 //	@AfterMethod()	//execute before closing the browser

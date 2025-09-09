@@ -28,17 +28,15 @@ public class RegisterPage {
 	@FindBy(xpath = "//input[@name='password2']")
 	WebElement Confirm_password;
 	
-	@FindBy(xpath = "//input[@type='submit' and @value='Register']")
+	@FindBy(xpath = "//a[contains(text(), 'Register')]")
 	WebElement Registerbutton;
 	
 	@FindBy(xpath = "//a[@href='/login']")
 	WebElement  Login_registration;
 	
-	@FindBy(xpath = "//div[contains(@class, 'alert') and @role='alert']")
+	@FindBy(xpath = "//div[@role='alert']")
 	WebElement errormsg_register;
-	
-	//@FindBy(xpath = " //*[@id=\"navbarCollapse\"]/div[2]/ul/a[2]")
-	//WebElement userId;
+
 	@FindBy(xpath = "//div[@class='alert alert-primary']") 
 	private WebElement loggedInUserElement;
 	
@@ -64,34 +62,49 @@ public class RegisterPage {
 	   return driver.getTitle();
 	     }
     
-    public void clickRegisterWithEmptyFields() {
-       Registerbutton.click();
-	     }
+//    public void clickRegisterWithEmptyFields() {
+//       Registerbutton.click();
+//	     }
     
     public boolean getAlertForEmptyField() {
 	   return Registerbutton.getDomAttribute("required") != null;
 		 }
+    public void register(String username, String password, String confirmPassword) {
+        if (username != null) {
+            Username_field.clear();
+            Username_field.sendKeys(username);
+        }
+        if (password != null) {
+            Password_field.clear();
+            Password_field.sendKeys(password);
+        }
+        if (confirmPassword != null) {
+            Confirm_password.clear();
+            Confirm_password.sendKeys(confirmPassword);
+        }
+        Registerbutton.click();
+    }
     
-    public void enterUsername(String username) {
-	   getUsername_field().clear();
-	   getUsername_field().sendKeys(username);
-	       }
+//    public void enterUsername(String username) {
+//	   getUsername_field().clear();
+//	   getUsername_field().sendKeys(username);
+//	       }
+//    
+//    public void enterPassword(String password) {
+//	   getPassword_field().clear();
+//	   getPassword_field().sendKeys(password);
+//	     }
+//
+//    public void enterConfirmPassword(String confirmPassword) {
+//	   getConfirm_password().clear();
+//	   getConfirm_password().sendKeys(confirmPassword);
+//	      }
     
-    public void enterPassword(String password) {
-	   getPassword_field().clear();
-	   getPassword_field().sendKeys(password);
-	     }
-
-    public void enterConfirmPassword(String confirmPassword) {
-	   getConfirm_password().clear();
-	   getConfirm_password().sendKeys(confirmPassword);
-	      }
-    
-    public void registerWithMismatchedPassword(String password,String confirmpassword) {
-	   getPassword_field().sendKeys(password);
-	   getConfirm_password().sendKeys(confirmpassword);
-	   Registerbutton.click();
-	      }
+//    public void registerWithMismatchedPassword(String password,String confirmpassword) {
+//	   getPassword_field().sendKeys(password);
+//	   getConfirm_password().sendKeys(confirmpassword);
+//	   Registerbutton.click();
+//	      }
     
     public String getMismatchPasswordError() {
 	   return errormsg_register.getText();
@@ -101,21 +114,21 @@ public class RegisterPage {
 	   return errormsg_register.getText();
 	      }
 
-    public void PasswordWithNumericdata(String username, String password,String confirmpassword) {
-	    getUsername_field().sendKeys(username);
-	    getPassword_field().sendKeys(password);
-	    getConfirm_password().sendKeys(confirmpassword);
-	       }
+//    public void PasswordWithNumericdata(String username, String password,String confirmpassword) {
+//	    getUsername_field().sendKeys(username);
+//	    getPassword_field().sendKeys(password);
+//	    getConfirm_password().sendKeys(confirmpassword);
+//	       }
     
     public String getShortPasswordError() {
 	   return errormsg_register.getText();
 	     }
     
-    public void registerWithPasswordlength(String username, String password,String confirmpassword) {
-	   getUsername_field().sendKeys(username);
-	   getPassword_field().sendKeys(password);
-	   getConfirm_password().sendKeys(confirmpassword);
-	     }
+//    public void registerWithPasswordlength(String username, String password,String confirmpassword) {
+//	   getUsername_field().sendKeys(username);
+//	   getPassword_field().sendKeys(password);
+//	   getConfirm_password().sendKeys(confirmpassword);
+//	     }
     
     public String userId() {
     	return loggedInUserElement.getText();
@@ -135,17 +148,17 @@ public class RegisterPage {
 	   return NewAccountCreated.isDisplayed();
 	     }
 
-    public WebElement getPassword_field() {
-	   return Password_field;
-	     }
-
-    public WebElement getUsername_field() {
-	    return Username_field;
-	       }
-
-    public WebElement getConfirm_password() {
-	   return Confirm_password;
-		  }
+//    public WebElement getPassword_field() {
+//	   return Password_field;
+//	     }
+//
+//    public WebElement getUsername_field() {
+//	    return Username_field;
+//	       }
+//
+//    public WebElement getConfirm_password() {
+//	   return Confirm_password;
+//		  }
     
     public boolean isAlertForEmptyPasswordDisplayed() {
 	   return Password_field.getDomAttribute("required") !=null;

@@ -1,6 +1,7 @@
 package utilities;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.codoid.products.fillo.Connection;
@@ -27,7 +28,7 @@ public class ExcelReaderFillo{
                 //Get all sheets
                 
                 for(String sheetName : connection.getMetaData().getTableNames()) {
-                    recordset = connection.executeQuery("select * from "+ sheetName +"");
+                    recordset = connection.executeQuery("select * from "+ sheetName);
                     int numOfRows = recordset.getCount();
                     int numOfColumns = recordset.getFieldNames().size();
                     Object[][] testData = new Object [numOfRows][numOfColumns];
@@ -81,17 +82,25 @@ public class ExcelReaderFillo{
 			Object[][] arr = sheetDataCache.get(sheetName);
 			int numRows = arr.length;
 		
+		    // Temporary list to collect matching rows
+		    List<Object[]> matchedRows = new java.util.ArrayList<>();
+
 			for(int i = 0; i < numRows; i++) {
 				for(int j = 0; j < arr[i].length; j++) {
 					if(arr[i][j] .equals(validationType)){
-						return new Object[][] { arr[i] };
+		                matchedRows.add(arr[i]);  // collect row
+		                break; // row matched, go to next row
 					}
 				}
 			}
 			
-			// If not found, return empty dataset
+		    // Convert list back to Object[][]
 			
-		    return new Object[0][0];
+			 Object[][] result = new Object[matchedRows.size()][];
+			    for (int i = 0; i < matchedRows.size(); i++) {
+			        result[i] = matchedRows.get(i);
+			    }
+			    return result;
 		}
 	
 	public static Map<String, String> getRowAsMap(String sheetName, String validationType) {
@@ -104,7 +113,7 @@ public class ExcelReaderFillo{
 
 	    for (Object[] row : arr) {
 	        for (Object cell : row) {
-	            if (cell != null && cell.toString().equals(validationType)) {
+	            if (cell.toString().equals(validationType)) {
 	                Map<String, String> map = new HashMap<>();
 	                for (int col = 0; col < headers.length; col++) {
 	                    map.put(headers[col], row[col].toString());

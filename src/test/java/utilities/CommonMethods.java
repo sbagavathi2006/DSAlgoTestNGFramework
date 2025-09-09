@@ -1,5 +1,6 @@
 package utilities;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,8 +23,7 @@ public class CommonMethods {
     	try {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_TIMEOUT));
         wait.until(ExpectedConditions.alertIsPresent());
-        String alertMsg = driver.switchTo().alert().getText();
-        driver.switchTo().alert().accept();
+        String alertMsg = driver.switchTo().alert().getText();        
         return alertMsg;
     	} catch (Exception e) {
             System.out.println("No alert found within timeout: "+ DEFAULT_TIMEOUT  + " seconds");
@@ -38,6 +38,19 @@ public class CommonMethods {
     	return str1;
     }
     
+    public static void writeCode(String code) {
+		JavascriptExecutor js = (JavascriptExecutor) TestContext.getDriver();
+		
+	    
+		//get HTML element document.querySelector('.CodeMirror') & reference to the actual CodeMirror editor instance. Stores code-mirror editor instance to editor variable.
+			
+		js.executeScript(
+		"let editor = document.querySelector('.CodeMirror').CodeMirror;" +
+		"editor.setValue(arguments[0]);", code);	//passing code as a parameter rather than hardcoding it inside the JS string.editor.setValue(code);	
+	}
     
+    public static String getCurrentURL(WebDriver driver) {
+    	return driver.getCurrentUrl();
+    }
       
 }
