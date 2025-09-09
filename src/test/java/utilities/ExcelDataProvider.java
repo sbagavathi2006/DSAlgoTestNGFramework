@@ -73,5 +73,20 @@ public class ExcelDataProvider {
     public Object[][] testDataValidCodSnippet(){  	
     	return ExcelReaderFillo.getTestDataFromValidationTypes("arrayPracticeQns", "ValidCodeSnippet");
     }
+    
+    @DataProvider(name = "testDataGraphEmptyCodeEditor")
+    public Object[][] testDataGraphEmptyCodeEditor(){  	
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("graphTryEditor", "EmptyCodeEditor");
+    }
+    
+    @DataProvider(name = "testDataGraphInvalidCodeRunEditor")
+    public Object[][] testDataGraphInvalidCodeRunEditor(){  	
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("graphTryEditor", "InvalidCodeRun");
+    }
+    
+    @DataProvider(name = "testDataGraphValidCodeRunEditor")
+    public Object[][] testDataGraphValidCodeRunEditor(){  	
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("graphTryEditor", "ValidCodeRun");
+    }
  
 }

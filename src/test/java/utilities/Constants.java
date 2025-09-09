@@ -15,6 +15,9 @@ public class Constants {
 	public static final int PRAC_QN_NUM2 = 2;
 	public static final int PRAC_QN_NUM3 = 3;
 	public static final int PRAC_QN_NUM4 = 4;
+	public static final String GRAPH_GRAPH_TITLE = "Graph";
+	public static final String GRAPH_GRAPH_REP_TITLE = "Graph Representations";
+
 
 	//private since this constructor is just a container for static values, Never create an Object.
 	private Constants() {

@@ -6,8 +6,10 @@ import pagefactory.TryEditorPage;
 import pagefactory.ArrayPage;
 import pagefactory.ArrayPraticeQnsPage;
 import pagefactory.DSAlgoPortalPage;
+import pagefactory.GraphPage;
 import pagefactory.HomePage;
 import pagefactory.LoginPage;
+import pagefactory.QueuePage;
 
 public class PageObjectManager {
 	private WebDriver driver;
@@ -17,6 +19,8 @@ public class PageObjectManager {
 	private ArrayPage arrayPage;
 	private TryEditorPage tryHerePages;
 	private ArrayPraticeQnsPage praticeQnsPages;
+	private GraphPage graphPage;
+	private QueuePage queuePage;
 	
 	public PageObjectManager(WebDriver driver) {
 		this.driver = driver;
@@ -60,5 +64,19 @@ public class PageObjectManager {
 			praticeQnsPages = new ArrayPraticeQnsPage(driver);
 		}
 		return praticeQnsPages;		
+	}
+	
+	public GraphPage getGraphPage() {
+		if(graphPage == null) {
+			graphPage = new GraphPage(driver);
+		}
+		return graphPage;		
+	}
+	
+	public QueuePage getQueuePage() {
+		if(queuePage == null) {
+			queuePage = new QueuePage(driver);
+		}
+		return queuePage;		
 	}
 }

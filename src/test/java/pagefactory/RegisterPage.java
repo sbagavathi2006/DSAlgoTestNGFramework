@@ -62,10 +62,6 @@ public class RegisterPage {
 	   return driver.getTitle();
 	     }
     
-//    public void clickRegisterWithEmptyFields() {
-//       Registerbutton.click();
-//	     }
-    
     public boolean getAlertForEmptyField() {
 	   return Registerbutton.getDomAttribute("required") != null;
 		 }
@@ -84,28 +80,7 @@ public class RegisterPage {
         }
         Registerbutton.click();
     }
-    
-//    public void enterUsername(String username) {
-//	   getUsername_field().clear();
-//	   getUsername_field().sendKeys(username);
-//	       }
-//    
-//    public void enterPassword(String password) {
-//	   getPassword_field().clear();
-//	   getPassword_field().sendKeys(password);
-//	     }
-//
-//    public void enterConfirmPassword(String confirmPassword) {
-//	   getConfirm_password().clear();
-//	   getConfirm_password().sendKeys(confirmPassword);
-//	      }
-    
-//    public void registerWithMismatchedPassword(String password,String confirmpassword) {
-//	   getPassword_field().sendKeys(password);
-//	   getConfirm_password().sendKeys(confirmpassword);
-//	   Registerbutton.click();
-//	      }
-    
+        
     public String getMismatchPasswordError() {
 	   return errormsg_register.getText();
 	     }
@@ -113,22 +88,10 @@ public class RegisterPage {
     public String getNumericPasswordError() {
 	   return errormsg_register.getText();
 	      }
-
-//    public void PasswordWithNumericdata(String username, String password,String confirmpassword) {
-//	    getUsername_field().sendKeys(username);
-//	    getPassword_field().sendKeys(password);
-//	    getConfirm_password().sendKeys(confirmpassword);
-//	       }
     
     public String getShortPasswordError() {
 	   return errormsg_register.getText();
 	     }
-    
-//    public void registerWithPasswordlength(String username, String password,String confirmpassword) {
-//	   getUsername_field().sendKeys(username);
-//	   getPassword_field().sendKeys(password);
-//	   getConfirm_password().sendKeys(confirmpassword);
-//	     }
     
     public String userId() {
     	return loggedInUserElement.getText();
@@ -147,18 +110,6 @@ public class RegisterPage {
     public boolean isAccountCreatedMessageDisplayed() {
 	   return NewAccountCreated.isDisplayed();
 	     }
-
-//    public WebElement getPassword_field() {
-//	   return Password_field;
-//	     }
-//
-//    public WebElement getUsername_field() {
-//	    return Username_field;
-//	       }
-//
-//    public WebElement getConfirm_password() {
-//	   return Confirm_password;
-//		  }
     
     public boolean isAlertForEmptyPasswordDisplayed() {
 	   return Password_field.getDomAttribute("required") !=null;

@@ -26,7 +26,7 @@ public class ArrayTest extends Hooks {
 	public void isArrInPythonLinkDisplayed() {		
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		Assert.assertTrue(TestContext.getPom().getArrayPage().isArraySubLinkDisplayed(Constants.ARR_IN_PHYTHON_TITLE),
-	                "Expected sublink not displayed: " + Constants.ARR_IN_PHYTHON_TITLE);
+	                "Expected sublink not displayed: " + TestContext.getDriver().getTitle());
 		LoggerLoad.info("User should see " + Constants.ARR_IN_PHYTHON_TITLE + " on the array page");		
 	    }
 	
@@ -34,7 +34,7 @@ public class ArrayTest extends Hooks {
 	public void isArrUsingListLinkDisplayed() {
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		Assert.assertTrue(TestContext.getPom().getArrayPage().isArraySubLinkDisplayed(Constants.ARR_USING_LIST_TITLE),
-	                "Expected sublink not displayed: " + Constants.ARR_USING_LIST_TITLE);
+				"Expected sublink not displayed: " + TestContext.getDriver().getTitle());
 		LoggerLoad.info("User should see " + Constants.ARR_USING_LIST_TITLE + " on the array page");				
 	}
 	
@@ -42,7 +42,7 @@ public class ArrayTest extends Hooks {
 	public void isBasicOperaInListLinkDisplayed() {
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		Assert.assertTrue(TestContext.getPom().getArrayPage().isArraySubLinkDisplayed(Constants.ARR_BASIC_LISTS_TITLE),
-	                "Expected sublink not displayed: " + Constants.ARR_BASIC_LISTS_TITLE);
+				"Expected sublink not displayed: " + TestContext.getDriver().getTitle());
 		LoggerLoad.info("User should see " + Constants.ARR_BASIC_LISTS_TITLE + " on the array page");
 	}
 	
@@ -50,7 +50,7 @@ public class ArrayTest extends Hooks {
 	public void isApplnOfArrLinkDisplayed() {
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		Assert.assertTrue(TestContext.getPom().getArrayPage().isArraySubLinkDisplayed(Constants.ARR_APPLNS_ARR_TITLE),
-	                "Expected sublink not displayed: " + Constants.ARR_APPLNS_ARR_TITLE);
+				"Expected sublink not displayed: " + TestContext.getDriver().getTitle());
 		LoggerLoad.info("User should see " + Constants.ARR_APPLNS_ARR_TITLE + " on the array page");
 	}
 	
@@ -58,7 +58,7 @@ public class ArrayTest extends Hooks {
 	public void validateArrInPythonLinkClick() {
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		TestContext.getPom().getArrayPage().clickSubLinks(Constants.ARR_IN_PHYTHON_TITLE);	
-		actualResult = TestContext.getPom().getArrayPage().getTitle();
+		actualResult = TestContext.getDriver().getTitle();
 		Assert.assertEquals(actualResult, Constants.ARR_IN_PHYTHON_TITLE);
 		LoggerLoad.info("Expected title is " + Constants.ARR_IN_PHYTHON_TITLE + ". Actual Title is " + actualResult);		
 	}
@@ -67,7 +67,7 @@ public class ArrayTest extends Hooks {
 	public void validateArrUsingListLinkClick() {
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		TestContext.getPom().getArrayPage().clickSubLinks(Constants.ARR_USING_LIST_TITLE);	
-		actualResult = TestContext.getPom().getArrayPage().getTitle();
+		actualResult = TestContext.getDriver().getTitle();
 		Assert.assertEquals(actualResult, Constants.ARR_USING_LIST_TITLE);
 		LoggerLoad.info("Expected title is " + Constants.ARR_USING_LIST_TITLE + ". Actual Title is " + actualResult);		
 	}
@@ -76,7 +76,7 @@ public class ArrayTest extends Hooks {
 	public void validateBasicListsLinkClick() {
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		TestContext.getPom().getArrayPage().clickSubLinks(Constants.ARR_BASIC_LISTS_TITLE);	
-		actualResult = TestContext.getPom().getArrayPage().getTitle();
+		actualResult = TestContext.getDriver().getTitle();
 		Assert.assertEquals(actualResult, Constants.ARR_BASIC_LISTS_TITLE);
 		LoggerLoad.info("Expected title is " + Constants.ARR_BASIC_LISTS_TITLE + ". Actual Title is " + actualResult);		
 	}
@@ -85,7 +85,7 @@ public class ArrayTest extends Hooks {
 	public void validateApplnsOfArrLinkClick() {
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		TestContext.getPom().getArrayPage().clickSubLinks(Constants.ARR_APPLNS_ARR_TITLE);	
-		actualResult = TestContext.getPom().getArrayPage().getTitle();
+		actualResult = TestContext.getDriver().getTitle();
 		Assert.assertEquals(actualResult, Constants.ARR_APPLNS_ARR_TITLE);
 		LoggerLoad.info("Expected title is " + Constants.ARR_APPLNS_ARR_TITLE + ". Actual Title is " + actualResult);		
 	}
@@ -103,7 +103,7 @@ public class ArrayTest extends Hooks {
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		TestContext.getPom().getArrayPage().clickSubLinks(Constants.ARR_IN_PHYTHON_TITLE);	
 		TestContext.getPom().getArrayPage().clickTryHereBtn();
-		actualResult = 	TestContext.getPom().getArrayPage().getTitle();
+		actualResult = 	TestContext.getDriver().getTitle();
 		Assert.assertEquals(actualResult, Constants.TRY_HERE_BTN_TITLE);
 		LoggerLoad.info("Expected title is " + Constants.TRY_HERE_BTN_TITLE + ". Actual Title is " + actualResult);		
 	}
@@ -121,7 +121,7 @@ public class ArrayTest extends Hooks {
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		TestContext.getPom().getArrayPage().clickSubLinks(Constants.ARR_USING_LIST_TITLE);	
 		TestContext.getPom().getArrayPage().clickTryHereBtn();
-		actualResult = 	TestContext.getPom().getArrayPage().getTitle();
+		actualResult = 	TestContext.getDriver().getTitle();
 		Assert.assertEquals(actualResult, Constants.TRY_HERE_BTN_TITLE);
 		LoggerLoad.info("Expected title is " + Constants.TRY_HERE_BTN_TITLE + ". Actual Title is " + actualResult);		
 	}
@@ -139,7 +139,7 @@ public class ArrayTest extends Hooks {
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		TestContext.getPom().getArrayPage().clickSubLinks(Constants.ARR_BASIC_LISTS_TITLE);	
 		TestContext.getPom().getArrayPage().clickTryHereBtn();
-		actualResult = 	TestContext.getPom().getArrayPage().getTitle();
+		actualResult = 	TestContext.getDriver().getTitle();
 		Assert.assertEquals(actualResult, Constants.TRY_HERE_BTN_TITLE);
 		LoggerLoad.info("Expected title is " + Constants.TRY_HERE_BTN_TITLE + ". Actual Title is " + actualResult);		
 	}
@@ -157,18 +157,18 @@ public class ArrayTest extends Hooks {
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		TestContext.getPom().getArrayPage().clickSubLinks(Constants.ARR_APPLNS_ARR_TITLE);	
 		TestContext.getPom().getArrayPage().clickTryHereBtn();
-		actualResult = 	TestContext.getPom().getArrayPage().getTitle();
+		actualResult = 	TestContext.getDriver().getTitle();
 		Assert.assertEquals(actualResult, Constants.TRY_HERE_BTN_TITLE);
 		LoggerLoad.info("Expected title is " + Constants.TRY_HERE_BTN_TITLE + ". Actual Title is " + actualResult);		
 	}
 	
 	@Test(groups = "validCredentials")
-	public void isRunButtonDisplayed(){
+	public void isRunButtonDisplayedOnArrayTryEditor(){
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		TestContext.getPom().getArrayPage().clickSubLinks(Constants.ARR_APPLNS_ARR_TITLE);	
 		TestContext.getPom().getArrayPage().clickTryHereBtn();
 		Assert.assertTrue(TestContext.getPom().getTryHerePages().isRunBtnDisplayed());
-		LoggerLoad.info("User should see Run Button when user clicks on Try Here button.");		
+		LoggerLoad.info("User should see Run Button when user clicks on Try Here button from Array Page.");		
 	}
 	
 	@Test(groups = "validCredentials", dataProvider = "testDataEmptyCodeEditor", dataProviderClass = ExcelDataProvider.class)
@@ -207,25 +207,25 @@ public class ArrayTest extends Hooks {
 	
 	
 	@Test(groups = "validCredentials")
-	public void isPraticeQnsLinkDisplayed() {
+	public void isPraticeQnsLinkDisplayedForArray(){
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		TestContext.getPom().getArrayPage().clickSubLinks(Constants.ARR_APPLNS_ARR_TITLE);		
 		Assert.assertTrue(TestContext.getPom().getArrayPage().isPraticeQnsLinkDisplayed());
-		LoggerLoad.info("User should see pratice Qns link");		
+		LoggerLoad.info("User should see pratice Qns link in Array Page.");		
 	}		
 	
 	@Test(groups = "validCredentials")
-	public void validatePraticeQnsLinkClick() {
+	public void validatePraticeQnsLinkClickForArray() {
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		TestContext.getPom().getArrayPage().clickSubLinks(Constants.ARR_APPLNS_ARR_TITLE);
 		TestContext.getPom().getArrayPage().clickPracticeQnsLink();
-		String actualResult = TestContext.getPom().getArrayPage().getTitle();
+		actualResult = TestContext.getDriver().getTitle();
 		Assert.assertEquals(actualResult, Constants.PRACTICE_QNS_LINK_TITLE);
 		LoggerLoad.info("Expected title is " + Constants.PRACTICE_QNS_LINK_TITLE + ". Actual Title is " + actualResult);		
 	}
 	
 	@Test(groups = "validCredentials")
-	public void validateNumOfPracticeQns() {
+	public void validateNumOfPracticeQnsForArray() {
 		TestContext.getPom().getHomePage().arrayGetStartBtnClick();
 		TestContext.getPom().getArrayPage().clickSubLinks(Constants.ARR_APPLNS_ARR_TITLE);
 		TestContext.getPom().getArrayPage().clickPracticeQnsLink();
