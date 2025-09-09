@@ -47,15 +47,6 @@ public class ArrayPraticeQnsPage {
 		return practiceQns.size();
 	}
 	
-//	public boolean isPraticeQnsDisplayed(String linkText) {
-//	    for (WebElement e : practiceQns) {
-//	        if (e.getText().trim().equalsIgnoreCase(linkText)) {
-//	            return e.isDisplayed();
-//	        }
-//	    }
-//	    throw new RuntimeException("SubLink not found: " + linkText);
-//	}
-	
 	public boolean isPracticeQnDisplayed(int qnNumber) {
 	    WebElement questionLink = driver.findElement(By.xpath("//a[@href='/question/" + qnNumber + "']"));
 	    return questionLink.isDisplayed();
@@ -65,48 +56,7 @@ public class ArrayPraticeQnsPage {
 	    WebElement questionLink = driver.findElement(By.xpath("//a[@href='/question/" + qnNumber + "']"));
 	    questionLink.click();
 	}
-	
-//	public boolean isPraticeQns1Displayed() {
-//	        return practiceQn1.isDisplayed();
-//	 }
-//	
-//	public boolean isPraticeQns2Displayed() {
-//        return practiceQn2.isDisplayed();
-//	}
-//	
-//	public boolean isPraticeQns3Displayed() {
-//        return practiceQn3.isDisplayed();
-//	}
-//	
-//	public boolean isPraticeQns4Displayed() {
-//        return practiceQn4.isDisplayed();
-//	}
-//	
-//	public void clickPraticeQns(String linkText) {
-//	    for (WebElement e : practiceQns) {
-//	        if (e.getText().trim().equalsIgnoreCase(linkText)) {
-//	            e.click();
-//	        }
-//	    }
-//	    throw new RuntimeException("SubLink not found: " + linkText);
-//	}
-//	
-//	public void clickPraticeQns1() {
-//        practiceQn1.click();
-//	}
-//
-//	public void clickPraticeQns2() {
-//		practiceQn2.click();
-//	}
-//
-//	public void clickPraticeQns3() {
-//		practiceQn3.click();
-//	}
-//
-//	public void clickPraticeQns4() {
-//		practiceQn4.click();
-//	}
-	
+		
 	public void clickPracticeQns(String linkText) {
 		switch (linkText.trim().toLowerCase()) {
 		case "search the array":
@@ -125,17 +75,7 @@ public class ArrayPraticeQnsPage {
 			throw new IllegalArgumentException("Invalid options name: " + linkText);
 		}
 	}
-//	
-//	public boolean isBtnDisplayed(String btn) {
-//		switch (btn) {
-//		case "run":
-//			return btnRun.isDisplayed();
-//		case "submit":
-//			return btnSubmit.isDisplayed();
-//		}
-//		return false;
-//	}
-	
+
 	public void clickRunBtn() {
 		btnRun.click();
 	}

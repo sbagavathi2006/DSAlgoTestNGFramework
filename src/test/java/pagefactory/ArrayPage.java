@@ -39,22 +39,6 @@ private WebDriver driver;
 		return arrayPageLinks.size();
 	}
 	
-//	public boolean isArraysInPythonLinkDisplayed() {
-//		return arraysInPython.isDisplayed();
-//	}
-//	
-//	public boolean isArraysUsingListLinkDisplayed() {
-//		return arraysUsingList.isDisplayed();
-//	}
-//	
-//	public boolean isBasicOperaInListsLinkDisplayed() {
-//		return basicOperaInLists.isDisplayed();
-//	}
-//	
-//	public boolean isApplnOfArrayLinkDisplayed() {
-//		return applnOfArray.isDisplayed();
-//	}
-	
 	public boolean isArraySubLinkDisplayed(String linkText) {
 	    for (WebElement e : arrayPageLinks) {
 	        if (e.getText().trim().equalsIgnoreCase(linkText)) {
@@ -63,23 +47,7 @@ private WebDriver driver;
 	    }
 	    throw new RuntimeException("SubLink not found: " + linkText);
 	}
-	
-//	public void clickArraysInPython() {
-//		arraysInPython.click();
-//	}
-//	
-//	public void clickArraysUsingListLink() {
-//		arraysUsingList.click();
-//	}
-//	
-//	public void clickBasicOperaInListsLink() {
-//		basicOperaInLists.click();
-//	}
-//	
-//	public void clickApplnOfArrayLink() {
-//		applnOfArray.click();
-//	}
-	
+		
 	public TryEditorPage clickSubLinks(String linkText) {
 		for(WebElement e: arrayPageLinks) {
 			if(e.getText().trim().equalsIgnoreCase(linkText)) {
