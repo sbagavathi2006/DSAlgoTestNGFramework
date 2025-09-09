@@ -18,9 +18,7 @@ public class LoginTest extends Hooks {
 		LoggerLoad.info("Validate Login feature for - " + validation);
 		TestContext.getPom().getDSAlgoPortalPage().getStartedBtnClick();
 		TestContext.getPom().getHomePage().clickSignInLink();
-		TestContext.getPom().getLoginPage().enterUserName(username);
-		TestContext.getPom().getLoginPage().enterPwd(password);
-		TestContext.getPom().getLoginPage().loginBtnClick();
+	    TestContext.getPom().getLoginPage().loginTODSAlgo(username, password);
 		actualResult = TestContext.getPom().getLoginPage().isErrMsgDisplayed();
 		actualMsg = TestContext.getPom().getLoginPage().getErrMsg();
 		Assert.assertTrue(actualResult);
@@ -32,9 +30,7 @@ public class LoginTest extends Hooks {
 		LoggerLoad.info("Validate Login feature for - " + validation);
 		TestContext.getPom().getDSAlgoPortalPage().getStartedBtnClick();
 		TestContext.getPom().getHomePage().clickSignInLink();
-		TestContext.getPom().getLoginPage().enterUserName(username);
-		TestContext.getPom().getLoginPage().enterPwd(password);
-		TestContext.getPom().getLoginPage().loginBtnClick();
+	    TestContext.getPom().getLoginPage().loginTODSAlgo(username, password);
 		actualResult = TestContext.getPom().getLoginPage().isErrMsgDisplayed();
 		actualMsg = TestContext.getPom().getLoginPage().getErrMsg();
 		Assert.assertTrue(actualResult);
@@ -46,9 +42,7 @@ public class LoginTest extends Hooks {
 		LoggerLoad.info("Validate Login feature for - " + validation);
 		TestContext.getPom().getDSAlgoPortalPage().getStartedBtnClick();
 		TestContext.getPom().getHomePage().clickSignInLink();
-		TestContext.getPom().getLoginPage().enterUserName(username);
-		TestContext.getPom().getLoginPage().enterPwd(password);
-		TestContext.getPom().getLoginPage().loginBtnClick();
+	    TestContext.getPom().getLoginPage().loginTODSAlgo(username, password);
 		actualResult = TestContext.getPom().getLoginPage().isAlertForEmptyPasswordDisplayed();
 		actualMsg = TestContext.getPom().getLoginPage().getEmptyPasswordAlertMsg();
 		Assert.assertTrue(actualResult);
@@ -60,9 +54,7 @@ public class LoginTest extends Hooks {
 		LoggerLoad.info("Validate Login feature for - " + validation);
 		TestContext.getPom().getDSAlgoPortalPage().getStartedBtnClick();
 		TestContext.getPom().getHomePage().clickSignInLink();
-		TestContext.getPom().getLoginPage().enterUserName(username);
-		TestContext.getPom().getLoginPage().enterPwd(password);
-		TestContext.getPom().getLoginPage().loginBtnClick();
+	    TestContext.getPom().getLoginPage().loginTODSAlgo(username, password);
 		actualResult = TestContext.getPom().getLoginPage().isAlertForEmptyUsernameDisplayed();
 		actualMsg = TestContext.getPom().getLoginPage().getEmptyUserNameAlertMsg();
 		Assert.assertTrue(actualResult);
@@ -74,9 +66,7 @@ public class LoginTest extends Hooks {
 		LoggerLoad.info("Validate Login feature for - " + validation);
 		TestContext.getPom().getDSAlgoPortalPage().getStartedBtnClick();
 		TestContext.getPom().getHomePage().clickSignInLink();
-		TestContext.getPom().getLoginPage().enterUserName(username);
-		TestContext.getPom().getLoginPage().enterPwd(password);
-		TestContext.getPom().getLoginPage().loginBtnClick();
+	    TestContext.getPom().getLoginPage().loginTODSAlgo(username, password);
 		actualResult = TestContext.getPom().getHomePage().isLoginSuccessMsgDisplayed();
 		actualMsg = TestContext.getPom().getHomePage().getLoginSuccessMsg();
 		Assert.assertTrue(actualResult);

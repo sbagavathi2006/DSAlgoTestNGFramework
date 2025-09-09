@@ -1,7 +1,5 @@
 package pagefactory;
 
-import java.util.Map;
-
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import utilities.CommonMethods;
-import utilities.ExcelReaderFillo;
 
 public class LoginPage {
 	private WebDriver driver;
@@ -33,20 +30,6 @@ public class LoginPage {
 		if(currentURL.contains("login")) {
 			return true;
 		}else return false;
-	}
-	
-	public void enterUserName(String userName) {
-		userNameSignIn.clear();
-		userNameSignIn.sendKeys(userName);
-	}
-	
-	public void enterPwd(String password) {
-		pwdSignIn.clear();
-		pwdSignIn.sendKeys(password);
-	}
-	
-	public void loginBtnClick() {
-		loginBtnClick.click();
 	}
 	
 	public boolean isErrMsgDisplayed() {
@@ -80,14 +63,11 @@ public class LoginPage {
 		return 	validationMsg;
 	}
 	
-	public void loginTODSAlgo() {
-		Map<String, String> validCred = ExcelReaderFillo.getRowAsMap("login", "ValidCredential");
+	public void loginTODSAlgo(String username, String password) {
 		userNameSignIn.clear();
-		userNameSignIn.sendKeys(validCred.get("username"));
+		userNameSignIn.sendKeys(username);
 		pwdSignIn.clear();
-		pwdSignIn.sendKeys(validCred.get("password"));
+		pwdSignIn.sendKeys(password);
 		loginBtnClick.click();		
 	}
-	
-
 }

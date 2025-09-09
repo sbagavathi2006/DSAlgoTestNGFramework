@@ -13,9 +13,8 @@ public class DSPortalTest extends Hooks{
 	public void getStartedBtnValidation() {
 		TestContext.getPom().getDSAlgoPortalPage().getStartedBtnClick();
 		String actualResult = TestContext.getDriver().getTitle();
-		Assert.assertTrue(actualResult.contains("NumpyNinja"), "Instead of NumpyNinja page title, it has a page title : " +actualResult);
-		LoggerLoad.info("PageTitle should be NumpyNinja, but the actual page title is : " + actualResult);		
-
+		Assert.assertTrue(actualResult.contains("NumpyNinja"));
+		LoggerLoad.info("PageTitle should be NumpyNinja, but the actual page title is : " + actualResult);	
 	}
 
 }

@@ -34,6 +34,20 @@ public class HomePage {
 	private WebElement signout;	
 	@FindBy(xpath = "//div[contains(text(), 'Logged out successfully')]")
 	private WebElement signoutSuccessMsg;
+	@FindBy(xpath = "//a[@href='data-structures-introduction']") 
+	private WebElement dsIntroGetStartBtn;	
+	@FindBy(xpath = "//a[@href='array']") 
+	private WebElement arrayGetStartBtn;	
+	@FindBy(xpath = "//a[@href='linked-list']") 
+	private WebElement linkedListGetStartBtn;	
+	@FindBy(xpath = "//a[@href='stack']") 
+	private WebElement stackGetStartBtn;	
+	@FindBy(xpath = "//a[@href='queue']") 
+	private WebElement queueGetStartBtn;	
+	@FindBy(xpath = "//a[@href='tree']") 
+	private WebElement treeGetStartBtn;	
+	@FindBy(xpath = "//a[@href='graph']") 
+	private WebElement graphGetStartBtn;
 	
 	public HomePage (WebDriver driver) {
 		this.driver = driver; 	// Reuses the driver created in Hooks
@@ -140,5 +154,34 @@ public class HomePage {
 	
 	public boolean isSignoutSuccessMsgDisplayed() {
 		return signoutSuccessMsg.isDisplayed();
+	}
+	
+	public void dsIntroGetStartBtnClick() {
+		dsIntroGetStartBtn.click();
+	}
+	
+	public void arrayGetStartBtnClick() {
+		CommonMethods.waitForElementToBeVisible(driver, arrayGetStartBtn);
+		arrayGetStartBtn.click();
+	}
+	
+	public void linkedListGetStartBtnClick() {
+		linkedListGetStartBtn.click();
+	}
+	
+	public void stackGetStartBtnClick() {
+		stackGetStartBtn.click();
+	}
+	
+	public void queueGetStartBtnClick() {
+		queueGetStartBtn.click();
+	}
+	
+	public void treeGetStartBtnClick() {
+		treeGetStartBtn.click();
+	}
+	
+	public void graphGetStartBtnClick() {
+		graphGetStartBtn.click();
 	}
 }

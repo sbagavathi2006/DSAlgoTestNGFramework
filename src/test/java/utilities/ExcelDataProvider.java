@@ -21,26 +21,57 @@ public class ExcelDataProvider {
 
     @DataProvider(name = "validLoginCredentials")
     public Object[][] validLoginCredentials(){  	
-    	return (Object[][]) ExcelReaderFillo.getTestDataFromValidationTypes("login", "ValidCredential");
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("login", "ValidCredential");
     }
     
     @DataProvider(name = "testDataWrongUserName")
     public Object[][] testDataWrongUserName(){  	
-    	return (Object[][]) ExcelReaderFillo.getTestDataFromValidationTypes("login", "WrongUserName");
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("login", "WrongUserName");
     }
     
     @DataProvider(name = "testDataWrongPwd")
     public Object[][] testDataWrongPwd(){  	
-    	return (Object[][]) ExcelReaderFillo.getTestDataFromValidationTypes("login", "WrongPwd");
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("login", "WrongPwd");
     }
     
     @DataProvider(name = "testDataEmptyPwd")
     public Object[][] testDataEmptyPwd(){  	
-    	return (Object[][]) ExcelReaderFillo.getTestDataFromValidationTypes("login", "EmptyPwd");
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("login", "EmptyPwd");
     }
     
     @DataProvider(name = "testDataEmptyUserName")
     public Object[][] testDataEmptyUserName(){  	
-    	return (Object[][]) ExcelReaderFillo.getTestDataFromValidationTypes("login", "EmptyUserName");
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("login", "EmptyUserName");
     }
+    
+    @DataProvider(name = "testDataEmptyCodeEditor")
+    public Object[][] testDataEmptyCodeEditor(){  	
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("arrayTryEditor", "EmptyCodeEditor");
+    }
+    
+    @DataProvider(name = "testDataInvalidCodeRunEditor")
+    public Object[][] testDataInvalidCodeRunEditor(){  	
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("arrayTryEditor", "InvalidCodeRun");
+    }
+    
+    @DataProvider(name = "testDataValidCodeRunEditor")
+    public Object[][] testDataValidCodeRunEditor(){  	
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("arrayTryEditor", "ValidCodeRun");
+    }
+    
+    @DataProvider(name = "testDataExistingCodSnippet")
+    public Object[][] testDataExistingCodSnippet(){  	
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("arrayPracticeQns", "ExistingCodeSnippet");
+    }
+    
+    @DataProvider(name = "testDataInvalidCodSnippet")
+    public Object[][] testDataInvalidCodSnippet(){  	
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("arrayPracticeQns", "InvalidCodeSnippet");
+    }
+    
+    @DataProvider(name = "testDataValidCodSnippet")
+    public Object[][] testDataValidCodSnippet(){  	
+    	return ExcelReaderFillo.getTestDataFromValidationTypes("arrayPracticeQns", "ValidCodeSnippet");
+    }
+ 
 }
