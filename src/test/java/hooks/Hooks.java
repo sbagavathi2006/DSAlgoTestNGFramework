@@ -1,10 +1,15 @@
 package hooks;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -54,18 +59,23 @@ public class Hooks {
 		TestContext.getPom().getLoginPage().loginTODSAlgo(username, password);
 		LoggerLoad.info("User Logged In");
 	}
-//	
-//	@AfterMethod()	//execute before closing the browser
-//	public void tearDown(Scenario scenario){ 	//Take a screenshot automatically if a scenario fails
-//		if(scenario.isFailed()) {
-//			LoggerLoad.error("Scenario failed: " + scenario.getName() + " — capturing screenshot.");
-//			String screenshotName = scenario.getName().replaceAll("", "_");
-//			byte [] sourcePath=((TakesScreenshot)DriverFactory.getDriver()).getScreenshotAs(OutputType.BYTES); 
-//			scenario.attach(sourcePath, "image/png", screenshotName);
-//			LoggerLoad.info("Screenshot attached to scenario: " + screenshotName);
-//			Allure.addAttachment("failedScreenshot", new ByteArrayInputStream(sourcePath));
-//		}
-//	}
+	
+	@AfterMethod()
+	public void failedScreenshot(ITestResult result){ 	
+		if(result.getStatus() == ITestResult.FAILURE) {
+		File sourceFile = ((TakesScreenshot)TestContext.getDriver()).getScreenshotAs(OutputType.FILE);
+		Date d = new Date();
+		String timeStamp = d.toString().replace(":", "_").replace(" ", "_");
+		String projectDirectory = System.getProperty("user.dir");
+		
+		try {
+			FileUtils.copyFile(sourceFile, new File(projectDirectory + "/screenshots/" + 
+					result.getName() + "_" + timeStamp + ".png"));
+		} catch ( IOException e) {
+			e.printStackTrace();
+		}
+		}
+	}
 	
 	@AfterMethod	// execute last
 	public void quitBrowser() { 	//Quits the browser and removes the thread-local WebDriver instance
