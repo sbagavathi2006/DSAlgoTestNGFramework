@@ -23,10 +23,6 @@ public class GraphPage {
         PageFactory.initElements(driver, this); 
 	}
 	
-	public String getGraphPageTitle() {
-		return driver.getTitle();
-	}
-	
 	public int numLinksInGraphPage() {
 		return graphPageLinks.size();
 	}

@@ -29,10 +29,6 @@ private WebDriver driver;
 		this.driver = driver;
         PageFactory.initElements(driver, this);
 	}
-
-	public String getGraphPageTitle() {
-		return driver.getTitle();
-	}
 	
 	public int numLinksInPage() {
 		return queuePageLinks.size();

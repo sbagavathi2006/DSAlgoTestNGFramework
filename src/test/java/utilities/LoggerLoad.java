@@ -17,7 +17,7 @@ public class LoggerLoad {
 
 	 public static void error(String message) {
 		 logger.error(message);
-		}
+		 }
 
 	 public static void fatal(String message) {
 		 logger.fatal(message);
@@ -26,4 +26,5 @@ public class LoggerLoad {
 	 public static void debug(String message) {
 		 logger.debug(message);
 		}
+	 
 }

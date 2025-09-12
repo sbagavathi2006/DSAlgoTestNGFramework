@@ -12,6 +12,8 @@ import utilities.CommonMethods;
 
 public class ArrayPraticeQnsPage {
 	private WebDriver driver;
+	private CommonMethods cm;
+
 	
 	@FindBy(xpath = "//a[@href='/question/1']") 
 	private WebElement practiceQn1;	
@@ -37,10 +39,7 @@ public class ArrayPraticeQnsPage {
 	public ArrayPraticeQnsPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this); 
-	}
-	
-	public String getCurrentUrl() {
-		return driver.getCurrentUrl();
+		this.cm = new CommonMethods(driver);
 	}
 	
 	public int numOfPraticeQns() {
@@ -89,7 +88,7 @@ public class ArrayPraticeQnsPage {
 	}
 	
 	public String getSubmitMsg() {
-		CommonMethods.waitForElementToBeVisible(driver, outputSubmit);
+		cm.waitForElementToBeVisible(driver, outputSubmit);
 		return outputSubmit.getText();
 	}
 }

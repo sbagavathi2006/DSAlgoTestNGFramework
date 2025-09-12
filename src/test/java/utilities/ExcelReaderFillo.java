@@ -124,12 +124,5 @@ public class ExcelReaderFillo{
 	    }
 	    return new HashMap<>();
 	}
-	
-	public static String validLoginUser() {
-		Map<String, String> validCred = ExcelReaderFillo.getRowAsMap("login", "ValidCredential");
-		String validUser = validCred.get("username");
-		return validUser;
-	}
-
 
 	}

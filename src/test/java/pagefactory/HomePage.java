@@ -13,6 +13,7 @@ import utilities.CommonMethods;
 public class HomePage {
 
 	private WebDriver driver;
+	private CommonMethods cm;
 	
 	@FindBy(xpath = "//a[text()='NumpyNinja']")
 	private WebElement numpyNinjaLink;
@@ -52,6 +53,7 @@ public class HomePage {
 	public HomePage (WebDriver driver) {
 		this.driver = driver; 	// Reuses the driver created in Hooks
         PageFactory.initElements(driver, this); 	//initialize all the WebElements that are annotated with @FindBy
+        this.cm = new CommonMethods(driver);
 	}
 	
 	public String getTitle() {
@@ -103,7 +105,7 @@ public class HomePage {
 	public void selectFromDropdown(String optionText) {
 	    for (WebElement e : dsDropdownOptions) {
 	        if (e.getText().trim().equalsIgnoreCase(optionText)) {
-	            CommonMethods.waitForElementToBeVisible(driver, e);
+	            cm.waitForElementToBeVisible(driver, e);
 	            e.click();
 	            return;
 	        }
@@ -118,7 +120,7 @@ public class HomePage {
 	public void clickFlexGetStarted(String flexTitle) {
 	    String xpath = "//a[@href= '"+flexTitle+"']";
 	    WebElement getStartedBtn = driver.findElement(By.xpath(xpath));
-        CommonMethods.waitForElementToBeVisible(driver, getStartedBtn);
+        cm.waitForElementToBeVisible(driver, getStartedBtn);
 	    getStartedBtn.click();
 	}
 	
@@ -131,7 +133,7 @@ public class HomePage {
 	}
     
 	public boolean isLoginSuccessMsgDisplayed() {
-		CommonMethods.waitForElementToBeVisible(driver, loginSuccessAlert);
+		cm.waitForElementToBeVisible(driver, loginSuccessAlert);
 		return loginSuccessAlert.isDisplayed();
 	}
 	
@@ -161,7 +163,7 @@ public class HomePage {
 	}
 	
 	public void arrayGetStartBtnClick() {
-		CommonMethods.waitForElementToBeVisible(driver, arrayGetStartBtn);
+		cm.waitForElementToBeVisible(driver, arrayGetStartBtn);
 		arrayGetStartBtn.click();
 	}
 	
@@ -174,7 +176,7 @@ public class HomePage {
 	}
 	
 	public void queueGetStartBtnClick() {
-		CommonMethods.waitForElementToBeVisible(driver, queueGetStartBtn);
+		cm.waitForElementToBeVisible(driver, queueGetStartBtn);
 		queueGetStartBtn.click();
 	}
 	
@@ -183,6 +185,7 @@ public class HomePage {
 	}
 	
 	public void graphGetStartBtnClick() {
+		cm.waitForElementToBeVisible(driver, graphGetStartBtn);
 		graphGetStartBtn.click();
 	}
 }

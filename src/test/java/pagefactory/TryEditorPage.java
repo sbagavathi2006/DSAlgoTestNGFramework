@@ -20,12 +20,7 @@ public class TryEditorPage {
 		this.driver = driver;
         PageFactory.initElements(driver, this); 
 	}
-	
-	public String getTitle(WebDriver driver) {
-		return driver.getTitle();		
-	}
 
-	
 	public boolean isRunBtnDisplayed() {
 		return btnRun.isDisplayed();
 	}
