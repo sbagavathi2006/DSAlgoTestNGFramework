@@ -6,9 +6,7 @@ import hooks.Hooks;
 
 import org.testng.Assert;
 
-import utilities.CommonMethods;
 import utilities.ExcelDataProvider;
-import utilities.ExcelReaderFillo;
 import utilities.LoggerLoad;
 import utilities.TestContext;
 
@@ -119,12 +117,11 @@ public class HomeTest extends Hooks{
 		LoggerLoad.info("User should see error message that you are not logged in");
 		}
 	
-	@Test(priority = 1, groups = "validCredentials")
-	public void VerifyLoggedInUser() {	
-		String expecteResult = ExcelReaderFillo.validLoginUser();
-		String actualResult = TestContext.getPom().getHomePage().loggedInUser(CommonMethods.strUser(expecteResult));
-		Assert.assertEquals(actualResult, CommonMethods.strUser(expecteResult));
-		LoggerLoad.info("LoggedIn User name displayed :" + expecteResult);
+	@Test(priority = 1, groups = "validCredentials", dataProvider = "validLoginCredentials", dataProviderClass = ExcelDataProvider.class)
+	public void VerifyLoggedInUser(String validation, String username, String password, String message) {	
+		String actualResult = TestContext.getPom().getHomePage().loggedInUser(cm.strUser(username));
+		Assert.assertEquals(actualResult, cm.strUser(username));
+		LoggerLoad.info("LoggedIn User name displayed :" + actualResult);
 		}
 	
 	@Test(priority = 2, groups = "validCredentials", dataProvider = "homeDDTestData", dataProviderClass = ExcelDataProvider.class)

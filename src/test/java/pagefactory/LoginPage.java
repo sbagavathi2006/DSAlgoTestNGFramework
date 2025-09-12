@@ -10,6 +10,7 @@ import utilities.CommonMethods;
 
 public class LoginPage {
 	private WebDriver driver;
+	private CommonMethods cm;
 	
 	@FindBy(id = "id_username") 
 	private WebElement userNameSignIn;
@@ -23,6 +24,7 @@ public class LoginPage {
 	public LoginPage (WebDriver driver) {
 		this.driver = driver; 	// Reuses the driver created in Hooks
         PageFactory.initElements(driver, this); 	//initialize all the WebElements that are annotated with @FindBy
+        this.cm = new CommonMethods(driver);
 	}
 	
 	public boolean isLoginPageLoaded() {
@@ -33,7 +35,7 @@ public class LoginPage {
 	}
 	
 	public boolean isErrMsgDisplayed() {
-		CommonMethods.waitForElementToBeVisible(driver, loginErrMsg);
+		cm.waitForElementToBeVisible(driver, loginErrMsg);
 		return loginErrMsg.isDisplayed();
 	}
 	

@@ -1,21 +1,15 @@
 package hooks;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
-import io.qameta.allure.Allure;
-import utilities.ConfigReader;
+import utilities.CommonMethods;
 import utilities.Constants;
 import utilities.ExcelReaderFillo;
 import utilities.LoggerLoad;
@@ -26,6 +20,7 @@ public class Hooks {
 
 	protected WebDriver driver;
 	private DriverFactory driverFactory;
+	protected CommonMethods cm;
 	
 	@BeforeClass(alwaysRun = true)
 	public void loadExcel() {
@@ -33,8 +28,8 @@ public class Hooks {
 	}
  
 	@BeforeMethod(alwaysRun = true)
-	public void launchbrowser() throws Throwable{ 	//Launch browser and open the base URL which are fetched from the loaded properties
-		String browsername = ConfigReader.getBrowserType(); 
+	@Parameters("browser") 	//cross browser testing
+	public void launchbrowser(@Optional("") String browsername)  throws Throwable{ 	//Launch browser and open the base URL which are fetched from the loaded properties
 		if (browsername == null || browsername.isEmpty()) {
 			browsername = Constants.BROWSER; 
 		}
@@ -49,7 +44,13 @@ public class Hooks {
 		LoggerLoad.info("Navigated to URL: " + Constants.APPURL + "Browser : " + browsername );
 	}
 	
-	@BeforeMethod(onlyForGroups = {"validCredentials"}, dependsOnMethods = "launchbrowser")
+	
+    @BeforeMethod(alwaysRun = true, dependsOnMethods = "launchbrowser")
+    public void initCommonMethods() {
+        cm = new CommonMethods(TestContext.getDriver());
+    }
+	
+	@BeforeMethod(onlyForGroups = {"validCredentials"}, dependsOnMethods = "initCommonMethods")
 	public void doLogin() {
 		 Map<String, String> validCred = ExcelReaderFillo.getRowAsMap("login", "ValidCredential");
 		 String username = validCred.get("username");
@@ -60,22 +61,6 @@ public class Hooks {
 		LoggerLoad.info("User Logged In");
 	}
 	
-	@AfterMethod()
-	public void failedScreenshot(ITestResult result){ 	
-		if(result.getStatus() == ITestResult.FAILURE) {
-		File sourceFile = ((TakesScreenshot)TestContext.getDriver()).getScreenshotAs(OutputType.FILE);
-		Date d = new Date();
-		String timeStamp = d.toString().replace(":", "_").replace(" ", "_");
-		String projectDirectory = System.getProperty("user.dir");
-		
-		try {
-			FileUtils.copyFile(sourceFile, new File(projectDirectory + "/screenshots/" + 
-					result.getName() + "_" + timeStamp + ".png"));
-		} catch ( IOException e) {
-			e.printStackTrace();
-		}
-		}
-	}
 	
 	@AfterMethod	// execute last
 	public void quitBrowser() { 	//Quits the browser and removes the thread-local WebDriver instance

@@ -31,10 +31,6 @@ private WebDriver driver;
         PageFactory.initElements(driver, this); 
 	}
 	
-	public String getTitle() {
-		return driver.getTitle();
-	}
-	
 	public int numLinksInArrayPage() {
 		return arrayPageLinks.size();
 	}
