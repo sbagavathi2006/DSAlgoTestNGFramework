@@ -144,14 +144,7 @@
 	    <artifactId>fillo</artifactId>
 	    <version>1.22</version>
 	</dependency>
-	
-	<!-- Force an Upgrade to Latest Lombok due to error in Jenkins which caused by org.projectlombok:lombok:jar:1.18.12:compile -->
-	<dependency>
-	    <groupId>org.projectlombok</groupId>
-	    <artifactId>lombok</artifactId>
-	    <version>1.18.34</version> <!-- latest stable -->
-	    <scope>provided</scope>
-	</dependency>
+
    </dependencies>
       
 </project>
