@@ -17,11 +17,10 @@ public class DriverFactory {
 		 // Added driver mgr to avoid jenkins error since selenium manager kicks in and tries to auto-download drivers
 		    
 		        case "chrome":
-		        	WebDriverManager.chromedriver().setup();  
 		            tlDriver.set(ThreadGuard.protect(new ChromeDriver()));
 		            break;
 		        case "edge":
-		        	WebDriverManager.edgedriver().setup();  
+		            System.setProperty("webdriver.edge.driver", "C:\\WebDrivers\\msedgedriver.exe");
 		            tlDriver.set(ThreadGuard.protect(new EdgeDriver()));
 		            break;
 		        default:
