@@ -21,7 +21,7 @@ public class DriverFactory {
 		            tlDriver.set(ThreadGuard.protect(new ChromeDriver()));
 		            break;
 		        case "edge":
-   				 	System.setProperty("webdriver.edge.driver", "C:\\WebDrivers\\msedgedriver.exe");
+		        	WebDriverManager.edgedriver().setup();  
 		            tlDriver.set(ThreadGuard.protect(new EdgeDriver()));
 		            break;
 		        default:
