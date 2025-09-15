@@ -39,8 +39,7 @@
     </pluginManagement>
     </build>
   
-    <dependencies>
-    
+<dependencies>
 <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 	<dependency>
 	    <groupId>org.seleniumhq.selenium</groupId>
@@ -153,6 +152,5 @@
 	    <version>1.18.34</version> <!-- latest stable -->
 	    <scope>provided</scope>
 	</dependency>
-   </dependencies>
-   
+   </dependencies>   
 </project>
